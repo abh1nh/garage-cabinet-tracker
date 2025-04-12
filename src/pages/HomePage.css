@@ -1,0 +1,34 @@
+.home-page {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .cabinet-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .cabinet-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .cabinet-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .cabinet-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .cabinet-card h2 {
+    padding: 15px;
+    margin: 0;
+  }

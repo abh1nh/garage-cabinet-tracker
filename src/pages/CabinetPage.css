@@ -1,0 +1,47 @@
+.cabinet-view {
+    display: flex;
+    margin-top: 20px;
+    gap: 20px;
+  }
+  
+  .cabinet-image {
+    width: 60%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  
+  .drawers-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+  }
+  
+  .drawer-item {
+    padding: 10px 15px;
+    background: #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .drawer-item.selected {
+    background: #4CAF50;
+    color: white;
+  }
+  
+  .drawer-contents {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-grow: 1;
+  }
+  
+  .drawer-contents h3 {
+    margin-top: 0;
+  }
+  
+  .drawer-contents ul {
+    padding-left: 20px;
+  }
