@@ -6,10 +6,8 @@ const CabinetPage = () => {
   const { cabinetId } = useParams();
   const [searchParams] = useSearchParams();
   const [cabinetData, setCabinetData] = useState(null);
-  const [initiallySelectedDrawer, setInitiallySelectedDrawer] = useState(null);
 
   useEffect(() => {
-    // Mock data with precise drawer positions
     const mockData = {
       tool: {
         id: 'tool',
@@ -17,74 +15,57 @@ const CabinetPage = () => {
         image: '/assets/tool-cabinet-open.jpg',
         drawers: [
           {
-            id: 'top',
-            name: 'Top Drawer',
+            id: '01',
+            name: 'Drawer 01',
             items: ['Hammer', 'Screwdrivers', 'Pliers'],
-            position: { 
-              top: 15, 
-              left: 5, 
-              width: 90, 
-              height: 20 
-            }
+            position: { top: 20, left: 5, width: 18, height: 25 }
           },
           {
-            id: 'middle',
-            name: 'Middle Drawer',
+            id: '02',
+            name: 'Drawer 02',
             items: ['Wrenches', 'Tape measure', 'Level'],
-            position: { 
-              top: 40, 
-              left: 5, 
-              width: 90, 
-              height: 20 
-            }
+            position: { top: 18, left: 27, width: 18, height: 27 }
           },
           {
-            id: 'bottom',
-            name: 'Bottom Drawer',
+            id: '03',
+            name: 'Drawer 03',
             items: ['Power drill', 'Saw', 'Sandpaper'],
-            position: { 
-              top: 65, 
-              left: 5, 
-              width: 90, 
-              height: 20 
-            }
+            position: { top: 45, left: 5, width: 90, height: 10 }
+          },
+          {
+            id: '04',
+            name: 'Drawer 04',
+            items: ['Power drill', 'Saw', 'Sandpaper'],
+            position: { top: 60, left: 5, width: 90, height: 10 }
+          },
+          {
+            id: '05',
+            name: 'Drawer 05',
+            items: ['Power drill', 'Saw', 'Sandpaper'],
+            position: { top: 75, left: 5, width: 90, height: 10 }
+          },
+          {
+            id: '06',
+            name: 'Drawer 06',
+            items: ['Power drill', 'Saw', 'Sandpaper'],
+            position: { top: 90, left: 5, width: 90, height: 10 }
           }
-        ]
-      },
-      // Add other cabinets as needed
-      paint: {
-        id: 'paint',
-        name: 'Paint Cabinet',
-        image: '/assets/paint-cabinet.jpg',
-        drawers: [
-          // ... drawer definitions
         ]
       }
     };
 
     const data = mockData[cabinetId];
     setCabinetData(data);
+  }, [cabinetId]);
 
-    // Handle drawer deep linking from URL
-    const drawerId = searchParams.get('drawer');
-    if (drawerId && data) {
-      const drawer = data.drawers.find(d => d.id === drawerId);
-      if (drawer) {
-        setInitiallySelectedDrawer(drawer);
-      }
-    }
-  }, [cabinetId, searchParams]);
-
-  if (!cabinetData) {
-    return <div className="loading">Loading cabinet...</div>;
-  }
+  if (!cabinetData) return <div>Loading...</div>;
 
   return (
     <div className="cabinet-page">
       <h1>{cabinetData.name}</h1>
       <CabinetView 
-        cabinetData={cabinetData} 
-        initiallySelectedDrawer={initiallySelectedDrawer}
+        cabinetData={cabinetData}
+        initialDrawerId={searchParams.get('drawer')} 
       />
     </div>
   );

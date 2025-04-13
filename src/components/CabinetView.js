@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './CabinetView.css';
 
-const CabinetView = ({ cabinetData }) => {
-  // In CabinetView.js
-const [selectedDrawer, setSelectedDrawer] = useState(initiallySelectedDrawer || null);
-  
-  const handleDrawerClick = (drawer, e) => {
-    e.stopPropagation();
-    e.preventDefault();
+const CabinetView = ({ cabinetData, initialDrawerId }) => {
+  const [selectedDrawer, setSelectedDrawer] = useState(null);
+
+  // Handle initial drawer selection from URL
+  useEffect(() => {
+    if (initialDrawerId && cabinetData?.drawers) {
+      const drawer = cabinetData.drawers.find(d => d.id === initialDrawerId);
+      if (drawer) setSelectedDrawer(drawer);
+    }
+  }, [initialDrawerId, cabinetData]);
+
+  const handleDrawerClick = (drawer) => {
     setSelectedDrawer(drawer);
   };
 
@@ -27,7 +32,7 @@ const [selectedDrawer, setSelectedDrawer] = useState(initiallySelectedDrawer || 
             <div
               key={drawer.id}
               className={`drawer-hotspot drawer-${drawer.id}`}
-              onClick={(e) => handleDrawerClick(drawer, e)}
+              onClick={() => handleDrawerClick(drawer)}
               style={{
                 position: 'absolute',
                 top: `${drawer.position.top}%`,
